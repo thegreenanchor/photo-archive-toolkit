@@ -750,6 +750,17 @@ Safety Constraints: Never delete source files. Confirm target paths with me befo
         el.style.transitionDelay = `${(idx % 3) * 0.1}s`;
         scrollObserver.observe(el);
       });
+
+      // Apply Mobile Sticky Card Stacking offsets
+      document.querySelectorAll('.features-grid .feature-card').forEach((card, idx) => {
+        card.style.top = `calc(76px + ${idx * 14}px)`;
+        card.style.zIndex = 10 + idx;
+      });
+
+      document.querySelectorAll('.steps-list .step-item').forEach((card, idx) => {
+        card.style.top = `calc(76px + ${idx * 14}px)`;
+        card.style.zIndex = 10 + idx;
+      });
     });
   </script>
 </body>

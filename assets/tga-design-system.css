@@ -89,7 +89,7 @@ body {
   color: var(--green);
 }
 
-/* Mobile Responsiveness */
+/* Mobile Responsiveness & Sticky Card Stacking */
 @media (max-width: 900px) {
   .nav-links {
     display: none !important;
@@ -111,10 +111,15 @@ body {
     margin: 30px auto 40px !important;
     border-radius: 8px !important;
   }
-  .features-grid {
-    grid-template-columns: 1fr !important;
+  .features-grid, .steps-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
   }
-  .steps-list {
-    grid-template-columns: 1fr !important;
+  .feature-card, .step-item {
+    position: sticky !important;
+    margin-bottom: 16px !important;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9) !important;
+    border-top: 1px solid var(--green-40) !important;
   }
 }
