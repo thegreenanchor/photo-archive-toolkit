@@ -130,6 +130,8 @@ body {
   }
   .feature-card, .step-item, .guide-card {
     position: sticky !important;
+    top: calc(76px + var(--card-index, 0) * 14px) !important;
+    z-index: calc(10 + var(--card-index, 0)) !important;
     margin-bottom: 16px !important;
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9) !important;
     border-top: 1px solid var(--green-40) !important;
