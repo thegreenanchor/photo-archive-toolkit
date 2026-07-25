@@ -34,3 +34,5 @@ manifests/
 ._*
 .vscode/
 .idea/
+
+.vercel

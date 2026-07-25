@@ -6,7 +6,7 @@
 > **Open-Source Photo Archiving for Mac & Windows**
 > A non-destructive, copy-first, checksum-verified photo archiving system designed for archiving iCloud Photos, Apple Photos libraries, Lightroom catalogs, and external backup drives onto external storage using Codex.
 > 
-> 🌐 **Interactive Landing Page & Prompts**: [https://thegreenanchor.github.io/photo-archive-toolkit/](https://thegreenanchor.github.io/photo-archive-toolkit/)
+> 🌐 **Interactive Landing Page & Codex Prompts**: [https://photo-archive-toolkit.vercel.app](https://photo-archive-toolkit.vercel.app)
 
 ---
 
