@@ -90,6 +90,18 @@ body {
 }
 
 /* Mobile Responsiveness & Sticky Card Stacking */
+@media (max-width: 1050px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .steps-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .instructions-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 900px) {
   .nav-links {
     display: none !important;
@@ -111,12 +123,12 @@ body {
     margin: 30px auto 40px !important;
     border-radius: 8px !important;
   }
-  .features-grid, .steps-list {
+  .features-grid, .steps-list, .instructions-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
   }
-  .feature-card, .step-item {
+  .feature-card, .step-item, .guide-card {
     position: sticky !important;
     margin-bottom: 16px !important;
     box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.9) !important;
