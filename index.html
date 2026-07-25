@@ -513,22 +513,32 @@
       <div class="feature-card">
         <div class="feature-icon">🔒</div>
         <h3>Non-Destructive Copying</h3>
-        <p>The CLI is strictly copy-first. It <strong>never deletes or moves</strong> your original photos or source files.</p>
+        <p>The CLI is strictly copy-first. It <strong>never deletes or alters</strong> your original photos or source files.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
         <h3>Streaming SHA-256 Checksums</h3>
-        <p>Every photo and video is verified using streaming SHA-256 hashes before and after copying to guarantee bit-for-bit integrity.</p>
+        <p>Every photo and video is verified using streaming SHA-256 hashes before and after transfer to guarantee bit-for-bit integrity.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📅</div>
         <h3>Preserves Sidecars & Dates</h3>
-        <p>Uses <code>shutil.copy2</code> to preserve exact file modification dates and automatically copies associated sidecars (<code>.xmp</code>, <code>.aae</code>, <code>.json</code>).</p>
+        <p>Uses <code>shutil.copy2</code> to preserve exact creation/modification dates and automatically copies associated sidecars (<code>.xmp</code>, <code>.aae</code>, <code>.json</code>).</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🍏</div>
         <h3>Apple Photos Safety Rule</h3>
         <p>Never scans internal <code>.photoslibrary</code> packages directly. Exports unmodified originals first to an external staging volume to prevent library corruption.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👯</div>
+        <h3>Idempotent Duplicate Prevention</h3>
+        <p>Re-running <code>copy</code> safely skips existing archive files with matching size and SHA-256 hash, preventing storage waste.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Atomic Manifest Auditing</h3>
+        <p>Generates JSON manifests and CSV reports of all scanned, copied, and verified files before taking action for complete transparency.</p>
       </div>
     </div>
   </section>
