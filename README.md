@@ -23,16 +23,27 @@ Open Terminal on your Mac inside this repository folder:
 python3 -m pip install -e .
 ```
 
-### 2. Run with Codex CLI
-Open Codex CLI on your Mac:
+### 2. Run with Codex Mac App
+Open the **Codex Mac App** (or run `codex` in Terminal) inside this folder and paste the **All-in-One Master Prompt** below:
 
-```bash
-codex
+```text
+Read README.md and src/photo_archive.py first. I want to archive my photo libraries and external drive dumps to my connected external hard drive.
+
+Please guide and assist me step-by-step:
+1. Inspect this Mac: Find all Apple Photos libraries (.photoslibrary), Lightroom catalogs, local photo folders, and attached external drives.
+2. Check storage: Show free space on my internal Mac drive and connected external drives.
+3. Apple Photos Export: If archiving Apple Photos / iCloud Photos, help me verify that unmodified originals are exported to an external staging folder (e.g. /Volumes/<DriveName>/_photo-export-staging/<batch-name>). Never scan .photoslibrary packages directly.
+4. Install & Setup: Install the photo-archive CLI locally (python3 -m pip install -e .).
+5. Scan: Run photo-archive scan with proper --source-class and --batch-name flags to generate a manifest.
+6. Dedupe Audit: Run photo-archive dedupe-report to check for exact SHA-256 duplicate files.
+7. Copy: Run photo-archive copy to copy files non-destructively into <archive-root>/<category>/<batch-name>/ while preserving creation dates and sidecars (.xmp, .aae).
+8. Verify: Run photo-archive verify to validate 100% SHA-256 checksum match and output a report.
+
+Safety Constraints: Never delete source files. Confirm target paths with me before copying.
 ```
 
-Paste the prompt from [`prompts/codex-mac-prompt.md`](prompts/codex-mac-prompt.md):
-
-> "Read README.md first. Inspect this Mac for Apple Photos libraries, Lightroom catalogs, and external backup drives. Help me run `photo-archive scan`, `copy`, and `verify` to back up my photos to my external hard drive."
+> [!TIP]
+> Need individual phase-by-phase prompts? See the full [Codex Mac App Prompt Playbook](prompts/codex-mac-prompt.md).
 
 ---
 
