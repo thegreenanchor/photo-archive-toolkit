@@ -81,9 +81,40 @@ body {
   font-weight: var(--w-light);
   color: var(--text);
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .tga-wordmark .green {
   font-style: italic;
   color: var(--green);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none !important;
+  }
+  .nav-inner {
+    justify-content: space-between !important;
+    gap: 12px;
+  }
+  .tga-wordmark {
+    font-size: 1.15rem;
+  }
+  .hero-title {
+    font-size: 2.2rem !important;
+  }
+  .hero {
+    padding: 50px 0 30px !important;
+  }
+  .banner-wrapper {
+    margin: 30px auto 40px !important;
+    border-radius: 8px !important;
+  }
+  .features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .steps-list {
+    grid-template-columns: 1fr !important;
+  }
 }
