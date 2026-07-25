@@ -413,6 +413,19 @@
       font-size: 0.9rem;
     }
 
+    /* Scroll Reveal Animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Toast Notification */
     .toast {
       position: fixed;
@@ -714,6 +727,30 @@ Safety Constraints: Never delete source files. Confirm target paths with me befo
     }
 
     selectTab('master');
+
+    /* Card Scroll Reveal Observer */
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.12
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.feature-card, .step-item, .prompt-card, .banner-wrapper').forEach((el, idx) => {
+        el.classList.add('scroll-reveal');
+        el.style.transitionDelay = `${(idx % 3) * 0.1}s`;
+        scrollObserver.observe(el);
+      });
+    });
   </script>
 </body>
 </html>
