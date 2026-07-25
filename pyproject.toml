@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "photo-archive-toolkit"
+version = "1.0.0"
+description = "Checksum-verified photo library archiving CLI for iCloud, Lightroom, and external drives."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Jose Suarez", email = "jose@thegreenanchor.com"}
+]
+keywords = ["photo-archive", "icloud-photos", "backup", "sha256", "codex-mac"]
+
+[project.scripts]
+photo-archive = "src.photo_archive:main"
