@@ -413,6 +413,90 @@
       font-size: 0.9rem;
     }
 
+    /* Detailed Guide Section */
+    .guide-section {
+      margin-bottom: 90px;
+    }
+
+    .instructions-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .guide-card {
+      background: linear-gradient(135deg, #111e17 0%, #0a120e 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .guide-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6), 0 0 25px var(--green-28);
+    }
+
+    .guide-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      background: rgba(0, 255, 160, 0.12);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 255, 160, 0.3);
+      display: inline-block;
+      margin-bottom: 14px;
+      font-weight: var(--w-bold);
+    }
+
+    .guide-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: var(--w-light);
+    }
+
+    .guide-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .guide-list {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      margin-left: 20px;
+      line-height: 1.7;
+    }
+
+    .guide-list li {
+      margin-bottom: 8px;
+    }
+
+    .guide-list strong {
+      color: var(--text);
+    }
+
+    .code-box {
+      background: #040705;
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+
+    .code-box pre code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #E2E8F0;
+      line-height: 1.6;
+    }
+
     /* Scroll Reveal Animation */
     .scroll-reveal {
       opacity: 0;
@@ -611,6 +695,81 @@
         <h4>Verify Integrity</h4>
         <p>Run <code>photo-archive verify</code> to confirm 100% checksum match on the destination drive.</p>
       </div>
+  <!-- Detailed Step-by-Step Guide Section -->
+  <section class="container guide-section" id="instructions">
+    <div class="section-header">
+      <div class="eyebrow">Manual & Terminal Walkthrough</div>
+      <h2 class="section-title">Step-by-Step Instructions</h2>
+      <p class="section-desc">Follow these exact step-by-step instructions to manually export, scan, copy, and verify your photo library.</p>
+    </div>
+
+    <div class="instructions-grid">
+      <!-- Step 1 Card -->
+      <div class="guide-card">
+        <div class="guide-badge">STEP 01</div>
+        <h3>🍏 Export Unmodified Originals from Apple Photos</h3>
+        <p class="guide-text">To prevent library database corruption, <strong>never scan <code>.photoslibrary</code> packages directly</strong>. Always export unmodified originals to a staging folder on your external drive first:</p>
+        <ol class="guide-list">
+          <li>Open the <strong>Photos app</strong> on your Mac.</li>
+          <li>Confirm originals are downloaded: <strong>Photos → Settings → Download Originals to this Mac</strong>.</li>
+          <li>Select the photos/albums you want to archive.</li>
+          <li>Go to <strong>File → Export → Export Unmodified Original for Photos...</strong></li>
+          <li>Ensure <strong>Export IPTC as XMP</strong> is enabled.</li>
+          <li>Choose an external staging folder (e.g. <code>/Volumes/MyPassport/_export_staging/2026-icloud-export</code>).</li>
+        </ol>
+      </div>
+
+      <!-- Step 2 Card -->
+      <div class="guide-card">
+        <div class="guide-badge">STEP 02</div>
+        <h3>⚡ Install CLI & Build SHA-256 Manifest</h3>
+        <p class="guide-text">Install the toolkit and run <code>photo-archive scan</code> against your staging folder or external drive to generate a SHA-256 inventory:</p>
+        <div class="code-box">
+          <pre><code># 1. Install CLI locally
+python3 -m pip install -e .
+
+# 2. Run Scan against your exported staging folder
+photo-archive scan \
+  --source-root "/Volumes/MyPassport/_export_staging/2026-icloud-export" \
+  --source-class icloud-export \
+  --batch-name "2026-07-icloud-photos" \
+  --manifest-out "./manifests/icloud-scan.json" \
+  --csv-out "./manifests/icloud-scan.csv"</code></pre>
+        </div>
+      </div>
+
+      <!-- Step 3 Card -->
+      <div class="guide-card">
+        <div class="guide-badge">STEP 03</div>
+        <h3>👯 Run Dedupe Audit & Non-Destructive Copy</h3>
+        <p class="guide-text">Check for exact duplicate files across your backup sources, then execute the non-destructive copy to your primary archive drive:</p>
+        <div class="code-box">
+          <pre><code># 1. Audit exact SHA-256 duplicate files
+photo-archive dedupe-report \
+  --manifest "./manifests/icloud-scan.json" \
+  --report-out "./manifests/duplicates.json"
+
+# 2. Execute non-destructive copy to target archive drive
+photo-archive copy \
+  --manifest "./manifests/icloud-scan.json" \
+  --archive-root "/Volumes/MyPassport/Photo Archive" \
+  --report-out "./manifests/copy-report.json"</code></pre>
+        </div>
+      </div>
+
+      <!-- Step 4 Card -->
+      <div class="guide-card">
+        <div class="guide-badge">STEP 04</div>
+        <h3>🛡️ Verify 100% SHA-256 Checksum Integrity</h3>
+        <p class="guide-text">Re-calculate streaming SHA-256 hashes on the target external hard drive to guarantee bit-for-bit file integrity:</p>
+        <div class="code-box">
+          <pre><code># Run complete checksum verification
+photo-archive verify \
+  --manifest "./manifests/icloud-scan.json" \
+  --archive-root "/Volumes/MyPassport/Photo Archive" \
+  --report-out "./manifests/verify-report.json"</code></pre>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -745,7 +904,7 @@ Safety Constraints: Never delete source files. Confirm target paths with me befo
     }, observerOptions);
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.feature-card, .step-item, .prompt-card, .banner-wrapper').forEach((el, idx) => {
+      document.querySelectorAll('.feature-card, .step-item, .prompt-card, .banner-wrapper, .guide-card').forEach((el, idx) => {
         el.classList.add('scroll-reveal');
         el.style.transitionDelay = `${(idx % 3) * 0.1}s`;
         scrollObserver.observe(el);
