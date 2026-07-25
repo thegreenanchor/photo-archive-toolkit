@@ -1,0 +1,89 @@
+/* ============================================================
+   THE GREEN ANCHOR — Canonical Design System Foundations
+   Dark editorial luxury. Cinematic. Restrained. Systems-aware.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+  /* Signature Accent Palette */
+  --green:          #00FFA0;
+  --green-bright:   #32FFB4;
+  --purple:         #7100FF;
+  --red:            #FF0050;
+  --warm:           #FF8C42;
+
+  /* Translucent Tints */
+  --green-12:       rgba(0, 255, 160, 0.12);
+  --green-18:       rgba(0, 255, 160, 0.18);
+  --green-28:       rgba(0, 255, 160, 0.28);
+  --green-32:       rgba(0, 255, 160, 0.32);
+  --green-40:       rgba(0, 255, 160, 0.40);
+  --green-55:       rgba(0, 255, 160, 0.55);
+
+  /* Dark Surfaces */
+  --bg:             #090909;
+  --bg-2:           #101010;
+  --bg-3:           #0c0c0c;
+  --bg-card:        #131313;
+  --bg-card-hover:  #171717;
+
+  /* Lines & Borders */
+  --border:         rgba(240, 240, 240, 0.07);
+  --border-strong:  rgba(240, 240, 240, 0.12);
+
+  /* Text Colors */
+  --text:           #F0F0F0;
+  --text-muted:     #777777;
+  --text-dim:       #444444;
+
+  /* Type Families */
+  --font-display:   'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:      'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:      'Fira Code', monospace;
+
+  /* Weights & Spacing */
+  --w-light:        300;
+  --w-regular:      400;
+  --w-medium:       500;
+  --w-semibold:     600;
+  --w-bold:         700;
+
+  --ls-display:     -0.02em;
+  --ls-label:       0.22em;
+  --ls-nav:         0.10em;
+  --ls-cta:         0.16em;
+}
+
+/* Base Rules */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(0, 255, 160, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 70%, rgba(113, 0, 255, 0.03) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Wordmark Class */
+.tga-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: var(--w-light);
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.tga-wordmark .green {
+  font-style: italic;
+  color: var(--green);
+}
