@@ -8,9 +8,9 @@
 
 ---
 
-## 🏷️ Tags & Domain
+## 🏷️ Repository Topics
 
-`domain: PERSONAL` · `tags: [photo-archive, icloud-photos, macos, codex, sha256, backup, automation]`
+`photo-archive` · `icloud-photos` · `codex` · `checksum-verification` · `sha256` · `backup` · `python` · `cli` · `macos` · `photo-library`
 
 ---
 
