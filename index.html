@@ -227,11 +227,15 @@
 
     .tabs-nav {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-      scrollbar-width: thin;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .tab-btn {
